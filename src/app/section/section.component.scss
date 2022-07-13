@@ -1,0 +1,33 @@
+.section {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+h2 {
+    display: inline-block;
+    position: relative;
+    margin-top: 5vh;
+    color: var(--color-primary);
+}
+
+h2:before,
+h2:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    top: 49%;
+    width: 20vw;
+}
+
+h2:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+h2:after {
+    left: 100%;
+    margin-left: 15px;
+}
