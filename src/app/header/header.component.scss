@@ -1,0 +1,47 @@
+.col:first-of-type {
+    margin-left: 2vw;
+    display: flex;
+}
+
+h1,
+h6 {
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+h6 {
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+.col:nth-of-type(2) {
+    display: flex;
+}
+
+.sns {
+    display: inline-block;
+    align-self: flex-end;
+}
+
+li {
+    list-style: none;
+}
+
+.sns fa-icon {
+    font-size: 1.8rem;
+    margin: 0 1.5rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    -webkit-transition: color 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out;
+}
+
+.sns fa-icon:hover {
+    color: var(--color-secondary)
+}
