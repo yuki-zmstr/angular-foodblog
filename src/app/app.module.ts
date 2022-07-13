@@ -20,6 +20,9 @@ import { environment } from 'src/environments/environment';
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroComponent } from './hero/hero.component';
+
+// import * as $ from '../../node_modules/jquery"
+
 @NgModule({
   declarations: [
     AppComponent,
