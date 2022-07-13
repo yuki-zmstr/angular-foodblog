@@ -32,20 +32,26 @@ h2:after {
     margin-left: 15px;
 }
 
-.col-lg-4 {
-    background-color: blue;
-    height: 40vh;
+.col-lg-4,
+.col-lg-6 {
+    // background-color: blue;
+    height: 45vh;
     position: relative;
+    padding-right: 0;
+    margin-top: 15px;
 }
 
 img {
     width: 100%;
     height: inherit;
+    object-fit: cover;
+    object-position: 100% 70%;
+    ;
 }
 
 .bottom {
     position: absolute;
-    left: 10px;
+    left: 20px;
     bottom: 10px;
     float: left;
 }
