@@ -10,8 +10,6 @@ export class AppComponent implements OnInit {
   title = 'angular-foodblog';
 
   ngOnInit() {
-    // $('#button').click(function(){
-    //   alert('Wass up!');
-    //    })
+    
   }
 }

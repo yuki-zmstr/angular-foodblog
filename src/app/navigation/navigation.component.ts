@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sections } from '../sections';
+// import $ from "jquery";
 
 @Component({
   selector: 'app-navigation',
@@ -9,10 +10,12 @@ import { Sections } from '../sections';
 export class NavigationComponent implements OnInit {
 
   sections = Sections
-  
+
   constructor() { }
 
   ngOnInit(): void {
+    // top nav fixed position
+    
   }
 
 }
