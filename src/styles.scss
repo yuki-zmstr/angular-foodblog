@@ -5,12 +5,13 @@
 
 :root {
     --color-primary: #363200;
-    --color-secondary: #cbcb00;
+    --color-secondary: #e3e300;
     --color-tertiary: #756D00
 }
 
 body {
     margin: 0 2em;
+    box-sizing: border-box;
 }
 
 body,

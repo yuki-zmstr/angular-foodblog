@@ -16,13 +16,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700;900&family=Kumbh+Sans:wght@700&display=swap" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- <script type="text/javascript">
-        $(document).ready(function() {
 
-            alert("Link clicked");
-        })
-    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
+
+    <script type="text/javascript">
+        setTimeout(() => {
+            var topnavPos = $("#topnav").offset().top;
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop() + 10;
+                console.log(scroll);
+                if (scroll > topnavPos) {
+                    $("#topnav").css({
+                        "position": "fixed",
+                        "top": "10px"
+                    }); //
+                    console.log('modified')
+                } else {
+                    $("#topnav").css({
+                        "position": "absolute",
+                        "top": "14vh"
+                    })
+                }
+            })
+
+        }, 1000);
+    </script>
+
+
 
 </head>
 
