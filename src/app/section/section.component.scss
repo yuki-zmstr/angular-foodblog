@@ -31,3 +31,40 @@ h2:after {
     left: 100%;
     margin-left: 15px;
 }
+
+.col-lg-4 {
+    background-color: blue;
+    height: 40vh;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    height: inherit;
+}
+
+.bottom {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    float: left;
+}
+
+h6 {
+    padding: 0 10px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 0.9rem;
+    text-align: left;
+    width: fit-content;
+    margin: 0;
+}
+
+span {
+    margin: 0;
+    font-size: 1.6rem;
+    font-family: 'Kumbh Sans', sans-serif;
+    background-color: var(--color-secondary);
+    color: black;
+    padding: 0 5px;
+}

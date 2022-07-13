@@ -1,7 +1,12 @@
 <div id={{section}} class="section">
     <h2>{{section}}</h2>
-    <div *ngFor="let food of foods">
-        {{food.name}}
+    <div class=" col-lg-4 " *ngFor="let food of foods ">
+        <img src="{{food.img_url}}">
+        <div class="bottom">
+            <h6>{{food.subcategory}}</h6>
+            <span>{{food.name}}</span>
+        </div>
+
         <!-- {{food.comments}} {{food.desc_en}} -->
         <!-- <img src={{food.img_url}} /> -->
     </div>
