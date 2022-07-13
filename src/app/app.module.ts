@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeroComponent } from './hero/hero.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SignupComponent,
     HeaderComponent,
     BodyComponent,
+    HeroComponent,
   ],
   imports: [
     BrowserModule,
