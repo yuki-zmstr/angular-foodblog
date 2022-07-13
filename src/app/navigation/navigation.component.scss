@@ -1,0 +1,39 @@
+#topnav {
+    margin: 0 auto 2vh auto;
+    width: 90%;
+    text-align: center;
+    font-family: 'Bitter', serif;
+    padding: 10px 0;
+    border-top: 3px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+#topnav a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease-in-out;
+    position: relative;
+    display: inline-block;
+}
+
+#topnav a:hover {
+    color: var(--color-tertiary);
+}
+
+#topnav a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: -4px;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: #a5785e;
+    transition: width 0.2s ease 0s, left 0.2s ease 0s;
+    width: 0;
+}
+
+#topnav a:hover:after {
+    width: 100%;
+    left: 0;
+}

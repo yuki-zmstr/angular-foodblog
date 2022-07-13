@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Sections } from '../sections';
 
 @Component({
   selector: 'app-navigation',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
+  sections = Sections
+  
   constructor() { }
 
   ngOnInit(): void {

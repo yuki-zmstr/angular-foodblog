@@ -1,10 +1,10 @@
 export const Sections = [
-  'breakfast',
-  'japanese',
-  'western',
-  'chinese',
-  'ethnic',
-  'fusion',
-  'korean',
-  'sweetz'
+  'Breakfast',
+  'Japanese',
+  'Western',
+  'Chinese',
+  'Ethnic',
+  'Fusion',
+  'Korean',
+  'Sweetz'
 ]

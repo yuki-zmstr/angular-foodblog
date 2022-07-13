@@ -1,1 +1,8 @@
-<p>navigation works!</p>
+<div class="container-fluid" id="topnav">
+    <div class="row">
+        <!-- put for in the element that you want to repeat -->
+        <div class="col" *ngFor="let section of sections ">
+            <a href="/home/#{{section}}">{{section}}</a>
+        </div>
+    </div>
+</div>
