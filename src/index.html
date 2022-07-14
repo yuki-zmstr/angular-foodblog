@@ -24,23 +24,49 @@
 
 
     <script type="text/javascript">
+        // nav bar positioning
         setTimeout(() => {
             var topnavPos = $("#topnav").offset().top;
             $(window).scroll(function() {
                 var scroll = $(window).scrollTop() + 10;
-                console.log(scroll);
+                // console.log(scroll);
                 if (scroll > topnavPos) {
                     $("#topnav").css({
                         "position": "fixed",
                         "top": "10px"
                     }); //
-                    console.log('modified')
                 } else {
                     $("#topnav").css({
                         "position": "absolute",
                         "top": "14vh"
                     })
                 }
+            })
+
+            // comments pop up
+            // const popup = document.getElementsByClassName("popup")
+            // console.log(popup)
+            // Array.from(popup).forEach(function() {
+            //     console("adding something")
+            //     var $this = $(this)
+            //     var to_pop = "#" + $this.data('name') + "-popup"
+            //     var $to_pop = $(to_pop)
+            //     $this.click(function() {
+            //         $to_pop.toggle()
+            //         console.log("clicked")
+            //     })
+            // })
+            $(document).on('mouseenter', '.popup', function() {
+                var $this = $(this)
+                var to_pop = "#" + $this.data('name') + "-popup"
+                var $to_pop = $(to_pop);
+                $to_pop.fadeIn(300);
+            })
+            $(document).on('mouseleave', '.popup', function() {
+                var $this = $(this)
+                var to_pop = "#" + $this.data('name') + "-popup"
+                var $to_pop = $(to_pop);
+                $to_pop.fadeOut(300);
             })
 
         }, 1000);
