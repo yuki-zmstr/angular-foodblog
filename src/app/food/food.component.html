@@ -28,9 +28,15 @@
                     </ul>
                 </div>
                 <div class="row">
-                    <div class="submit" style="margin: 2vh auto auto auto">
-                        <textarea name="comment" id="comment-{{food.name}}" class="form-control"></textarea>
-                        <button type="submit" class="button2" onclick="">Add Comment</button>
+                    <div style="margin: 2vh auto auto auto">
+                        <form #comment="ngForm" (ngSubmit)="addComment(food.name, comment.form.value.comment)">
+                            <div class="formgroup">
+                                <input ngModel name="comment" id="comment-{{food.name}}" class="form-control" />
+                            </div>
+                            <button class="button2">Add Comment</button>
+
+                        </form>
+
                     </div>
                 </div>
             </div>

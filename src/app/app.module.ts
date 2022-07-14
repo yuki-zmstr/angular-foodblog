@@ -18,6 +18,9 @@ import { AuthenticationService } from './services/authentication.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
+// Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroComponent } from './hero/hero.component';
@@ -45,7 +48,9 @@ import { FoodComponent } from './food/food.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'),
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
     // MatFormFieldModule,
   ],
   providers: [AuthenticationService],

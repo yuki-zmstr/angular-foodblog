@@ -157,12 +157,21 @@ export class AuthenticationService {
 
   async addComment(foodName: any, comment: any) {
     // first read the current comments
-    const currentComments: string[] = []
-    const newComments: string[] = []
-    const foodCollection: AngularFirestoreCollection<Food> = this.afs.collection(`foods/${foodName}`)
+    const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(`foods/${foodName}`)
+    const currentComments: any = (await foodDocument.ref.get()).data()?.comments
+    currentComments.push(comment)
+    foodDocument.update({comments: currentComments})
+
+    // console.log(foodDocument)
+    // console.log((await foodDocument.ref.get()).data())
+    
     // add the new comment to the array
     // set the comment property to the new array
-    return newComments
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+    return true
   }
   getComments(foodName: string) {
     const foodRef: AngularFirestoreDocument<any> = this.afs.doc(

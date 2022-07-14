@@ -15,13 +15,8 @@ export class SectionComponent implements OnInit {
   foods?: Food[];
 
   getFoods() {
-    // console.log("in get food function")
-    // console.log("searching for: ", this.section)
     this.authService.GetFoods(this.section).then((foods) => this.foods = foods)
   }
-
-
-  
 
   constructor(public authService: AuthenticationService ) { }
 
