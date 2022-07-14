@@ -19,7 +19,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
 // Forms
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatFormFieldModule } from "@angular/material/form-field";;
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -50,8 +51,8 @@ import { FoodComponent } from './food/food.component';
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
-    // MatFormFieldModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

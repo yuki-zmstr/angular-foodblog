@@ -1,7 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserProfile } from '../models/user-profile';
 import { AuthenticationService } from '../services/authentication.service';
+
+export function passwordsMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    console.log(password)
+    const confirmPassword = control.get('confirmPassword')?.value;
+    console.log(confirmPassword)
+    if (password && confirmPassword && password != confirmPassword) {
+      return {
+        passwordsDontMatch: true
+      }
+    }
+    return null;
+  };
+}
 
 
 @Component({
@@ -13,7 +28,9 @@ export class SignupComponent implements OnInit {
   
   signUpForm = new FormGroup({
     name: new FormControl(''),
-    password: new FormControl('')})
+    password: new FormControl(''),
+    confirmPassword: new FormControl('')},{ validators: passwordsMatchValidator(), 
+    })
 
   constructor(public authService: AuthenticationService) { }
 
