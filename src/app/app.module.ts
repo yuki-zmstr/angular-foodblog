@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
+// import { MatFormFieldModule } from '@angular/material/form-field';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -43,6 +44,7 @@ import { FooterComponent } from './footer/footer.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'),
     HttpClientModule,
     FontAwesomeModule
+    // MatFormFieldModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

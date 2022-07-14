@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { UserProfile } from '../models/user-profile';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  signUpForm = new FormGroup({
+    name: new FormControl(''),
+    password: new FormControl('')})
 
-  constructor() { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit(): void {
+  }
+
+  get email() {
+    return this.signUpForm.get('name') + "@yumzandsweetz.com";
+  }
+  get password() {
+    return String(this.signUpForm.get('password'))
+  }
+
+  signup(){
+    const userData: UserProfile = {
+      email: this.email,
+      password: this.password,
+    }
+    console.log(userData)
+
+    // this.authService.SignUp(userData)
   }
 
 }

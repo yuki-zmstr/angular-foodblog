@@ -62,7 +62,8 @@ export class AuthenticationService {
 
   // Sign up with email/password
   SignUp(userProfile: UserProfile){
-    return this.afAuth.createUserWithEmailAndPassword(userProfile.email!, userProfile.password!)
+    return this.afAuth
+    .createUserWithEmailAndPassword(userProfile.email!, userProfile.password!)
     .then((result) => {
       this.SetUserData(userProfile).then(()=>{
         this.router.navigate(['/home'])

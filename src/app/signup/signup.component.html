@@ -1,1 +1,7 @@
-<p>signup works!</p>
+<div class="form-container mat-elevation-z5">
+    <form (ngSubmit)="signup()">
+        <input matInput placeholder="Name" formControlName="name" name="name" />
+        <input matInput placeholder="Password" formControlName="password" type="password" />
+        <button mat-raised-button type="submit">Sign up</button>
+    </form>
+</div>

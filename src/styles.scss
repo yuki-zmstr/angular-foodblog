@@ -9,9 +9,19 @@
     --color-tertiary: #756D00
 }
 
+html {
+    background: url("https://i.postimg.cc/3JX0GMcf/DSCF0144.jpg") no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100%;
+    background-position: 0% 40%;
+}
+
 body {
-    margin: 0 2em;
+    margin: 0;
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.92);
 }
 
 body,
