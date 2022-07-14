@@ -3,14 +3,14 @@
 
 /* Application-wide Styles */
 
-:root {
+ :root {
     --color-primary: #363200;
     --color-secondary: #e3e300;
     --color-tertiary: #756D00
 }
 
 html {
-    background: url("https://i.postimg.cc/3JX0GMcf/DSCF0144.jpg") no-repeat fixed;
+    background: url("https://i.postimg.cc/HnRPm1Tg/spices.jpg") no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,32 +18,34 @@ html {
     background-position: 0% 40%;
 }
 
+html::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.4)
+}
+
 body {
     margin: 0;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
-body,
-input[type="text"],
-button {
-    color: #333;
-    font-family: Cambria, Georgia, serif;
-}
-
-button {
-    background-color: #eee;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: black;
-    font-size: 1.2rem;
-    padding: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
+// button {
+//     background-color: #eee;
+//     border: none;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     color: black;
+//     font-size: 1.2rem;
+//     padding: 1rem;
+//     margin-right: 1rem;
+//     margin-bottom: 1rem;
+//     margin-top: 1rem;
+// }
 button:hover {
     background-color: black;
     color: white;
@@ -89,3 +91,8 @@ button:disabled {
     color: #818181;
     border-color: #818181;
 }
+
+// .dark-mode {
+//     background-color: var(--color-primary);
+//     color: var(--color-primary);
+// }

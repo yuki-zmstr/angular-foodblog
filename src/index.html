@@ -24,8 +24,56 @@
 
 
     <script type="text/javascript">
-        // nav bar positioning
         setTimeout(() => {
+            // dark mode
+            $("#bw").click(function() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            });
+
+            // slideshow
+            let slideIndex = 1;
+            $(".slideshow-container").each(function() {
+                let cat = $(this)[0].id
+                showSlides(slideIndex, cat)
+            });
+
+            $(".prev").click(function() {
+                let cat = $(this).parent()[0].id
+                showSlides(slideIndex -= 1, cat)
+            })
+            $(".next").click(function() {
+                let cat = $(this).parent()[0].id
+                showSlides(slideIndex += 1, cat)
+            })
+
+            $('.dot').click(function() {
+                let num = $(this).data('num')
+                let cat = $(this).parents()[1].id
+                showSlides(slideIndex = num, cat)
+            })
+
+            function showSlides(n, cat) {
+                let i;
+                let slides = document.getElementById(cat).getElementsByClassName("slide");
+                let dots = document.getElementById(cat).getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            // nav bar positioning
             var topnavPos = $("#topnav").offset().top;
             $(window).scroll(function() {
                 var scroll = $(window).scrollTop() + 10;
@@ -44,18 +92,7 @@
             })
 
             // comments pop up
-            // const popup = document.getElementsByClassName("popup")
-            // console.log(popup)
-            // Array.from(popup).forEach(function() {
-            //     console("adding something")
-            //     var $this = $(this)
-            //     var to_pop = "#" + $this.data('name') + "-popup"
-            //     var $to_pop = $(to_pop)
-            //     $this.click(function() {
-            //         $to_pop.toggle()
-            //         console.log("clicked")
-            //     })
-            // })
+
             $(document).on('mouseenter', '.popup', function() {
                 var $this = $(this)
                 var to_pop = "#" + $this.data('name') + "-popup"
@@ -68,7 +105,7 @@
                 var $to_pop = $(to_pop);
                 $to_pop.fadeOut(300);
             })
-        }, 1000);
+        }, 200);
     </script>
 
 
