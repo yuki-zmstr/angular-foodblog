@@ -144,20 +144,8 @@ export class AuthenticationService {
   await foodCollection.ref.get()
   .then((querySnapShot) => {
     querySnapShot.forEach(async(food_detail) => {
-      // console.log(food_detail.data().category)
       let food: Food = food_detail.data();
       if (food.category == category) {
-      //   console.log("creating comment collection")
-      //   const commentCollection = foodCollection.doc(food_detail.id).collection("comment").get();
-      //   commentCollection.forEach(comment => {
-      //   comment.forEach(doc => {
-      //     let comment_data: any = doc.data();
-      //     if (food.comments == null) {
-      //       food.comments = [];
-      //     }
-      //     food.comments.push(comment_data);
-      //   })
-      // })
         foods.push(food)
       }
       })
@@ -167,11 +155,19 @@ export class AuthenticationService {
     return foods
   }
 
+  async addComment(foodName: any, comment: any) {
+    // first read the current comments
+    const currentComments: string[] = []
+    const newComments: string[] = []
+    const foodCollection: AngularFirestoreCollection<Food> = this.afs.collection(`foods/${foodName}`)
+    // add the new comment to the array
+    // set the comment property to the new array
+    return newComments
+  }
   getComments(foodName: string) {
     const foodRef: AngularFirestoreDocument<any> = this.afs.doc(
       `foods/${foodName}`
     )
-
     var comments: Comment[] = [];
 
     foodRef.ref.get().then(doc => {

@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroComponent } from './hero/hero.component';
 import { FooterComponent } from './footer/footer.component';
+import { FoodComponent } from './food/food.component';
 
 // import * as $ from '../../node_modules/jquery"
 
@@ -37,6 +38,7 @@ import { FooterComponent } from './footer/footer.component';
     BodyComponent,
     HeroComponent,
     FooterComponent,
+    FoodComponent,
   ],
   imports: [
     BrowserModule,

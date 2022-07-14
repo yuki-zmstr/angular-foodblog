@@ -20,9 +20,8 @@ export class SectionComponent implements OnInit {
     this.authService.GetFoods(this.section).then((foods) => this.foods = foods)
   }
 
-  removeSpaces(name: any) {
-    return name.replace(/ /g, "")
-  }
+
+  
 
   constructor(public authService: AuthenticationService ) { }
 

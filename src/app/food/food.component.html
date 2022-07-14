@@ -1,0 +1,39 @@
+<div class="popup" [attr.data-name]="removeSpaces(food.name)">
+    <img src="{{food.img_url}}">
+    <div class="bottom">
+        <h6>{{food.subcategory}}</h6>
+        <span>{{food.name}}</span>
+    </div>
+    <div class="pop-up" id="{{removeSpaces(food.name)}}-popup">
+
+        <div class="row">
+            <div class="col">
+                <p>{{food.desc_jp}}</p>
+                <p>{{food.desc_en}}</p>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <p style="margin: 2vh auto auto auto">コメント/Comments</p>
+                </div>
+                <div class="row" style="margin: 2vh 0 0 2vw">
+                    <ul class="list-group list-group-flush">
+                        <li class="row">
+                            <div *ngFor="let c of  food.comments ">
+                                <h5>{{c}}</h5>
+                            </div>
+                            <!-- <button type="button" class="close" onClick="deleteComment({{ comment.id }})">
+                        <span aria-hidden="true">&times;</span>
+                      </button> {%endif%} -->
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="submit" style="margin: 2vh auto auto auto">
+                        <textarea name="comment" id="comment-{{food.name}}" class="form-control"></textarea>
+                        <button type="submit" class="button2" onclick="">Add Comment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
