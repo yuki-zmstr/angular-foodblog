@@ -55,12 +55,18 @@ span {
     outline-offset: -15px;
 }
 
-.pop-up p {
+.pop-up p,
+h3 {
     text-align: left;
     margin-top: 5vh;
     font-size: 1.3rem;
     font-weight: 200;
     overflow-wrap: break-word;
+}
+
+.pop-up h3 {
+    margin: 2vh auto auto auto;
+    text-decoration: underline;
 }
 
 .pop-up li {
