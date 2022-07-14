@@ -48,3 +48,37 @@ li {
 .sns fa-icon:hover {
     color: var(--color-secondary)
 }
+
+.col:nth-of-type(3) {
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.login {
+    display: flex;
+}
+
+.login p {
+    font-family: "Bitter", sans-serif;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+button {
+    width: 5vw;
+    height: 4vh;
+    background-color: #080710;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
+    font-family: "Kumbh Sans", sans-serif;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
