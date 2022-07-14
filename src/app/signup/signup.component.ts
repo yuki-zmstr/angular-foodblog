@@ -10,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  
   signUpForm = new FormGroup({
     name: new FormControl(''),
     password: new FormControl('')})
@@ -19,21 +20,21 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get email() {
-    return this.signUpForm.get('name') + "@yumzandsweetz.com";
-  }
-  get password() {
-    return String(this.signUpForm.get('password'))
-  }
+  // get email() {
+  //   return this.signUpForm.get('name') + "@yumzandsweetz.com";
+  // }
+  // get password() {
+  //   return String(this.signUpForm.get('password'))
+  // }
 
-  signup(){
+  signUp(name: any, password: any){
+    const email = name + "@yumzandsweetz.com"
     const userData: UserProfile = {
-      email: this.email,
-      password: this.password,
+      email: email,
+      password: password,
     }
     console.log(userData)
-
-    // this.authService.SignUp(userData)
+    this.authService.SignUp(userData)
   }
 
 }

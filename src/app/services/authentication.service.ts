@@ -67,8 +67,6 @@ export class AuthenticationService {
     .then((result) => {
       this.SetUserData(userProfile).then(()=>{
         this.router.navigate(['/home'])
-        console.log('\n\n\n\n\nsigned up successfully')
-        // this.openSnackBar("Signed up successfully.")
       }).catch((error) => {
         window.alert(error.message)
       })
