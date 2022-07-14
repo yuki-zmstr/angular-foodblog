@@ -1,7 +1,65 @@
-<div class="form-container mat-elevation-z5">
-    <form (ngSubmit)="signup()">
-        <input matInput placeholder="Name" formControlName="name" name="name" />
-        <input matInput placeholder="Password" formControlName="password" type="password" />
-        <button mat-raised-button type="submit">Sign up</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="slideshow-container" id="photography">
+                <div class="slide">
+                    <img src="https://i.postimg.cc/MpfFgCc1/pizza.jpg">
+                </div>
+                <div class="slide">
+                    <img src="https://i.postimg.cc/qRxYj2NY/cheese.jpg">
+                </div>
+                <div class="slide">
+                    <img src="https://i.postimg.cc/sXrqYTg7/jelly.jpg">
+                </div>
+                <div class="slide">
+                    <img src="https://i.postimg.cc/sDqnPTnx/keema.jpg">
+                </div>
+                <div class="slide">
+                    <img src="https://i.postimg.cc/0ySVV73f/pasta.jpg">
+                </div>
+
+                <div class="slide">
+                    <img src="https://i.postimg.cc/TYwSJLf7/tiramisu.jpg">
+                </div>
+
+                <div class="dots">
+                    <span class="dot" data-num="1"></span>
+                    <span class="dot" data-num="2"></span>
+                    <span class="dot" data-num="3"></span>
+                    <span class="dot" data-num="4"></span>
+                    <span class="dot" data-num="5"></span>
+                    <span class="dot" data-num="6"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+            <form method="POST">
+                <div class="col title">
+                    <h1>Y</h1>
+                    <h6>umz & Sweetz</h6>
+                </div>
+                <h4>Sign Up</h4>
+                <div class="form-group">
+                    <input type="name" id="name" name="name" placeholder="Enter username" />
+                    <div class="text_underline"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Enter password" />
+                    <div class="text_underline"></div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm password" />
+                    <div class="text_underline"></div>
+                </div>
+                <br />
+                <button type="submit">Sign up</button>
+
+            </form>
+            <div class="others">
+                <!-- <button type="submit" onclick="window.location.href = '/sign-up'">Sign Up</button> -->
+                <button type="submit" onclick="window.location.href = '/home'">Continue without logging in</button>
+            </div>
+        </div>
+    </div>
 </div>
