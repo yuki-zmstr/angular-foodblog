@@ -140,7 +140,6 @@ export class AuthenticationService {
     // take in category as parameter -> search for foods with this category
     const foods: Food[] = [];
     const foodCollection: AngularFirestoreCollection<Food> = this.afs.collection(`foods/`);
-    // console.log(foodCollection)
   await foodCollection.ref.get()
   .then((querySnapShot) => {
     querySnapShot.forEach(async(food_detail) => {
@@ -161,12 +160,6 @@ export class AuthenticationService {
     const currentComments: any = (await foodDocument.ref.get()).data()?.comments
     currentComments.push(comment)
     foodDocument.update({comments: currentComments})
-
-    // console.log(foodDocument)
-    // console.log((await foodDocument.ref.get()).data())
-    
-    // add the new comment to the array
-    // set the comment property to the new array
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);

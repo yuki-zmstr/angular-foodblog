@@ -19,12 +19,7 @@ export class FoodComponent implements OnInit {
 
 
   addComment(foodName: any, comment: any) {
-    console.log("adding comment: ", comment, "for", foodName)
     this.authService.addComment(foodName, comment)
-  }
-
-  submit(foodName: any, comment: any) {
-    console.log("form submitted", comment, "for", foodName)
   }
 
   removeSpaces(name: any) {

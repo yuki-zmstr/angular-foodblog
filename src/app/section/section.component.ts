@@ -22,14 +22,7 @@ export class SectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFoods()
-    // console.log(this.foods)
-    // this.foods= [{
-    //   category: "breakfast",
-    //   img_url: "...",
-    //   comments: [],
-    //   name: "chicken sandwich"
-    // }]
-    
+
   }
 
 }
