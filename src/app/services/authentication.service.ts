@@ -163,16 +163,25 @@ export class AuthenticationService {
   }
 
   async addComment(foodName: any, comment: any) {
-    // first read the current comments
-    const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(`foods/${foodName}`)
-    const currentComments: any = (await foodDocument.ref.get()).data()?.comments
-    currentComments.push(comment)
-    foodDocument.update({comments: currentComments})
-    let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-    });
+    if (! this.isLoggedIn) {
+      window.alert("Please log in to leave a comment.\nコメントをするにはログインして下さい。")
+    } else if (comment == ''){
+      window.alert("Comment box is empty.\nコメントを入力して下さい。")
+    }
+    else {
+        // first read the current comments
+        const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(`foods/${foodName}`)
+        const currentComments: any = (await foodDocument.ref.get()).data()?.comments
+        currentComments.push(comment)
+        foodDocument.update({comments: currentComments})
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+        
+    }
     return true
+    
   }
   getComments(foodName: string) {
     const foodRef: AngularFirestoreDocument<any> = this.afs.doc(

@@ -10,6 +10,7 @@ h6 {
     justify-content: center;
     align-items: center;
     font-family: "Bitter", sans-serif;
+    color: var(--color-primary);
 }
 
 h1 {
@@ -18,7 +19,7 @@ h1 {
 
 h6 {
     font-size: 2.5rem;
-    color: var(--color-primary);
+    // color: var(--color-primary);
 }
 
 .col:nth-of-type(2) {
@@ -96,13 +97,14 @@ button {
         justify-content: center;
         align-items: center;
         font-family: "Bitter", sans-serif;
+        color: var(--color-primary);
     }
     h1 {
         font-size: 4rem;
     }
     h6 {
         font-size: 1.5rem;
-        color: var(--color-primary);
+        // color: var(--color-primary);
     }
     .col:nth-of-type(2) {
         display: flex;
