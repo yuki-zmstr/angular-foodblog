@@ -32,13 +32,17 @@
             </div>
         </div>
         <ng-container *ngIf="authService.userData as user; else loginButton">
-            <div class="col welcome">
-                <p>Welcome back, {{formatName(user.email)}}</p>
+            <div class="col">
+                <div class="row topright">
+                    <p>Welcome back, {{formatName(user.email)}}</p>
+                    <button (click)="logout()">Log Out</button>
+                </div>
+
             </div>
         </ng-container>
         <ng-template #loginButton>
             <div class="col">
-                <div class="row login">
+                <div class="row topright">
                     <p>Always open to advice.</p>
                     <button onclick="window.location.href = '/login'">Log In</button>
                 </div>

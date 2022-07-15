@@ -59,8 +59,10 @@ export class AuthenticationService {
     return this.afAuth
     .signInWithEmailAndPassword(userProfile.email!, userProfile.password!)
     .then((result) => {
-      this.openSnackBar("Logged in successfully!")
+      // this.openSnackBar("Logged in successfully!")
       this.router.navigate(['/home']);
+      // window.alert("Logged in successfully!")
+
   }).catch((error) => {
     window.alert(error.message);
   })}
@@ -73,7 +75,8 @@ export class AuthenticationService {
     .then((result) => {
       this.SetUserData(userProfile).then(()=>{
         this.router.navigate(['/home'])
-        this.openSnackBar("Signed up successfully!")
+        // this.openSnackBar("Signed up successfully!")
+        // window.alert("Signed up successfully!")
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -102,7 +105,7 @@ export class AuthenticationService {
     })
   }
 
-  SignOut() {
+  LogOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.userData = undefined;

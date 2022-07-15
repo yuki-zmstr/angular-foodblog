@@ -24,4 +24,8 @@ export class HeaderComponent implements OnInit {
     return email.replace("@yumzandsweetz.com", "")
   }
 
+  logout() {
+    this.authService.LogOut()
+  }
+
 }
