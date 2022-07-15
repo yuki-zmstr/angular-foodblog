@@ -59,8 +59,8 @@ export class AuthenticationService {
     return this.afAuth
     .signInWithEmailAndPassword(userProfile.email!, userProfile.password!)
     .then((result) => {
-      this.router.navigate(['/home']);
       this.openSnackBar("Logged in successfully!")
+      this.router.navigate(['/home']);
   }).catch((error) => {
     window.alert(error.message);
   })}

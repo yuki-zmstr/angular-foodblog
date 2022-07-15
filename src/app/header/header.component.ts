@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faFacebookSquare, faLinkedin, faInstagram} from '@fortawesome/free-brands-svg-icons';
 import { faAdjust } from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-header',
@@ -13,9 +15,13 @@ export class HeaderComponent implements OnInit {
   LIicon = faLinkedin
   IGicon = faInstagram
   BWicon = faAdjust
-  constructor() { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit(): void {
+  }
+
+  formatName(email: any) {
+    return email.replace("@yumzandsweetz.com", "")
   }
 
 }

@@ -3,7 +3,6 @@ import { Comment } from "./comment";
 export interface UserProfile {
   // id?: number;
   password?: string;
-
   email?: string;
   // comments?: Comment[];
   // able to delete own comments.

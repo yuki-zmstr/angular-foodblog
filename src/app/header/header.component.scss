@@ -57,6 +57,17 @@ li {
     margin: auto;
 }
 
+.welcome {
+    display: flex;
+}
+
+.welcome p {
+    font-family: "Bitter", sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .login {
     display: flex;
 }

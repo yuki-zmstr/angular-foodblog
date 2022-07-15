@@ -31,11 +31,19 @@
                 </ul>
             </div>
         </div>
-        <div class="col">
-            <div class="row login">
-                <p>Always open to advice.</p>
-                <button onclick="window.location.href = '/login'">Log In</button>
+        <ng-container *ngIf="authService.userData as user; else loginButton">
+            <div class="col welcome">
+                <p>Welcome back, {{formatName(user.email)}}</p>
             </div>
-        </div>
+        </ng-container>
+        <ng-template #loginButton>
+            <div class="col">
+                <div class="row login">
+                    <p>Always open to advice.</p>
+                    <button onclick="window.location.href = '/login'">Log In</button>
+                </div>
+            </div>
+        </ng-template>
+
     </div>
 </div>
