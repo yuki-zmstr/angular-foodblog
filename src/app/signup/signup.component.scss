@@ -184,3 +184,183 @@ button {
     flex-wrap: wrap;
     flex-direction: column
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 80%;
+        height: 80vh;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        backdrop-filter: blur(10px);
+        /* text-align: center; */
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        border-radius: 8px;
+        padding-right: 0;
+        font-family: "Bitter", sans-serif;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    .row {
+        height: fit-content;
+        width: 100%;
+    }
+    .col-lg-7,
+    .col-lg-5 {
+        padding: 0 2vw;
+        height: 35vh;
+        width: 100%;
+    }
+    .slideshow-container {
+        max-height: 30vh;
+        position: relative;
+        margin: 5vh auto 10vh auto;
+        padding: 0;
+    }
+    .slideshow-container img {
+        max-height: 25vh;
+        object-fit: cover;
+        width: 100%;
+        margin: auto;
+    }
+    .slide {
+        display: flex;
+        text-align: center;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+    @keyframes fade {
+        from {
+            opacity: .5
+        }
+        to {
+            opacity: 1
+        }
+    }
+    .dots {
+        margin-top: 2vh;
+        text-align: center;
+    }
+    .dot {
+        cursor: pointer;
+        height: 13px;
+        width: 13px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        color: var(--color-primary);
+    }
+    h1,
+    h6 {
+        font-weight: 700;
+        display: flex;
+        font-family: "Bitter", sans-serif;
+        width: fit-content;
+    }
+    h1 {
+        font-size: 3rem;
+        margin: 0;
+    }
+    h6 {
+        font-size: 1.5rem;
+    }
+    h4 {
+        margin: 0 0 5px 10px;
+        font-family: "Kumbh Sans", sans-serif;
+        font-size: 1.1rem;
+    }
+    input {
+        font-size: 1rem;
+        width: 90%;
+        margin: 10px 0 0 10px;
+        border: none;
+        outline: none;
+        padding-bottom: 8px;
+        box-sizing: border-box;
+        /*横幅の解釈をpadding, borderまでとする*/
+        background-color: transparent;
+        height: fit-content;
+    }
+     ::placeholder {
+        color: black;
+        font-family: "Kumbh Sans", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+    }
+    .text_underline {
+        width: 90%;
+        position: relative;
+        /*.text_underline::beforeの親要素*/
+        border-top: 3px solid #c2c2c2;
+        /*inputの下線*/
+    }
+    /*共通のstyle*/
+    .text_underline::before,
+    .text_underline::after {
+        position: absolute;
+        bottom: 0px;
+        /*中央配置*/
+        width: 0px;
+        /*アニメーションで0pxから50%に*/
+        height: 3px;
+        /*高さ*/
+        content: '';
+        background-color: #3be5ae;
+        /*アニメーションの色*/
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+    }
+    /*中央から右へのアニメーション*/
+    .text_underline::before {
+        left: 50%;
+        /*中央配置*/
+    }
+    /*中央から左へのアニメーション*/
+    .text_underline::after {
+        right: 50%;
+        /*中央配置*/
+    }
+    input:focus+.text_underline::before,
+    input:focus+.text_underline::after {
+        width: 50%;
+    }
+    .tooShortError {
+        font-size: 0.8rem;
+    }
+    button {
+        width: 150px;
+        background-color: #080710;
+        color: #ffffff;
+        padding: 5px 0;
+        font-size: 10px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Kumbh Sans", sans-serif;
+        justify-content: center;
+        margin: auto;
+        margin-top: 5px;
+        display: flex;
+    }
+    .others {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column
+    }
+}

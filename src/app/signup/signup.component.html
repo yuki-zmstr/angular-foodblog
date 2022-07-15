@@ -49,7 +49,7 @@
                     <div class="text_underline"></div>
                 </div>
                 <div>
-                    <mat-error *ngIf="signUpForm?.errors?.['passwordTooShort']">
+                    <mat-error class="tooShortError" *ngIf="signUpForm?.errors?.['passwordTooShort']">
                         Password should be at least 6 characters.
                     </mat-error>
                 </div>
