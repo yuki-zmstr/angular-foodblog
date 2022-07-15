@@ -13,6 +13,7 @@ import { BodyComponent } from './body/body.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 // import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -20,7 +21,8 @@ import { environment } from 'src/environments/environment';
 
 // Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MatFormFieldModule } from "@angular/material/form-field";;
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -53,6 +55,8 @@ import { FoodComponent } from './food/food.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

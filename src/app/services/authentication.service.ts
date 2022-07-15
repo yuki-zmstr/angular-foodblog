@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-// import {snack}
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Food } from '../models/food';
@@ -31,6 +31,7 @@ export class AuthenticationService {
     public afAuth: AngularFireAuth, // inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
+    private _snackBar: MatSnackBar,
     private http: HttpClient,
   ) {
     // save user data in localstorage when logged in and setting up null when logged out.
@@ -45,16 +46,21 @@ export class AuthenticationService {
     })
    }
 
+   openSnackBar(message: string) {
+    this._snackBar.open(message, "OK", {
+      duration: 5000,
+    });
+  }
+
+
   
-  // sign in with email and password. append @yumzandsweetz.com to username from UI.
-  SignIn (email:string, password:string) {
+  // log in with email and password. append @yumzandsweetz.com to username from UI.
+  LogIn (userProfile: UserProfile) {
     return this.afAuth
-    .signInWithEmailAndPassword(email, password)
+    .signInWithEmailAndPassword(userProfile.email!, userProfile.password!)
     .then((result) => {
-      this.ngZone.run(()=> {
-        // this.openSnackBar("Logged in successfully!")
-        this.isAdmin
-      }) 
+      this.router.navigate(['/home']);
+      this.openSnackBar("Logged in successfully!")
   }).catch((error) => {
     window.alert(error.message);
   })}
@@ -67,6 +73,7 @@ export class AuthenticationService {
     .then((result) => {
       this.SetUserData(userProfile).then(()=>{
         this.router.navigate(['/home'])
+        this.openSnackBar("Signed up successfully!")
       }).catch((error) => {
         window.alert(error.message)
       })

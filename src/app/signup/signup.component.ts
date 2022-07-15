@@ -5,7 +5,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password')?.value;
+    const password = control.get('signup_password')?.value;
     console.log(password)
     const confirmPassword = control.get('confirmPassword')?.value;
     console.log(confirmPassword)
@@ -20,11 +20,11 @@ export function passwordsMatchValidator(): ValidatorFn {
 
 export function passwordsLengthValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password')?.value;
+    const password = control.get('signup_password')?.value;
     console.log(password)
     if (password.length <= 5) {
       return {
-        passwordsTooShort: true
+        passwordTooShort: true
       }
     }
     return null;
@@ -40,8 +40,8 @@ export function passwordsLengthValidator(): ValidatorFn {
 export class SignupComponent implements OnInit {
   
   signUpForm = new FormGroup({
-    name: new FormControl(''),
-    password: new FormControl(''),
+    signup_name: new FormControl(''),
+    signup_password: new FormControl(''),
     confirmPassword: new FormControl('')},{ validators: [passwordsMatchValidator(),passwordsLengthValidator()] 
     })
 
