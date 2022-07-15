@@ -203,4 +203,24 @@ export class AuthenticationService {
     }).then (() => {return comments})
   }
 
+  addFood(food: Food) {
+    var foodRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `foods/${food.name}`
+    );
+    return foodRef.ref.get().then(doc=> {
+      if (doc.exists) {
+        throw new Error("The food data exists already!");
+      } else {
+        return foodRef.set(food, {
+          merge: true,
+        }).then(()=> {
+          window.location.reload()
+          // this.router.navigate(['/admin']);
+          return true;
+        })
+      }
+    })
+
+  }
+
 }

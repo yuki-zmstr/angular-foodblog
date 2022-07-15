@@ -23,12 +23,14 @@ import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
 
 // Icons
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeroComponent } from './hero/hero.component';
 import { FooterComponent } from './footer/footer.component';
 import { FoodComponent } from './food/food.component';
+import { AddFoodComponent } from './add-food/add-food.component';
 
 // import * as $ from '../../node_modules/jquery"
 
@@ -45,6 +47,7 @@ import { FoodComponent } from './food/food.component';
     HeroComponent,
     FooterComponent,
     FoodComponent,
+    AddFoodComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { FoodComponent } from './food/food.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule
   ],
