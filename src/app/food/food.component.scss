@@ -59,7 +59,7 @@ span {
 h3 {
     text-align: left;
     margin-top: 5vh;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 200;
     overflow-wrap: break-word;
 }
@@ -77,8 +77,8 @@ h5 {
     text-align: left;
 }
 
-textarea {
-    width: 100%;
+input {
+    width: 80%;
     height: 4vh;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -87,8 +87,99 @@ textarea {
     font-size: 1.2rem;
     resize: none;
     overflow-y: hidden;
+    margin: auto;
 }
 
-.btn10 {
-    background-color: yellow;
+@media only screen and (max-width: 600px) {
+    .popup {
+        height: 45vh;
+        position: relative;
+        padding-right: 0;
+        margin-top: 15px;
+    }
+    img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+        object-position: 70% 70%;
+        ;
+    }
+    .bottom {
+        position: absolute;
+        left: 20px;
+        bottom: 10px;
+        float: left;
+    }
+    h6 {
+        padding: 0 10px;
+        background-color: var(--color-primary);
+        color: white;
+        font-size: 0.9rem;
+        text-align: left;
+        width: fit-content;
+        margin: 0;
+    }
+    span {
+        margin: 0;
+        font-size: 1.6rem;
+        font-family: 'Kumbh Sans', sans-serif;
+        background-color: var(--color-secondary);
+        color: black;
+        padding: 0 5px;
+    }
+    .pop-up {
+        display: none;
+        // opacity: 0;
+        background-color: rgba(0, 0, 0, 0.609);
+        position: absolute;
+        color: white;
+        height: 100%;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        padding: 4vh 3vw;
+        font-family: 'Hina Mincho', serif !important;
+        outline: 3px solid rgb(255, 255, 255);
+        outline-offset: -15px;
+    }
+    // .pop-up .col-sm {
+    //     height: fit-content;
+    // }
+    .pop-up p,
+    h3 {
+        text-align: left;
+        margin-top: 0;
+        margin-left: 10px;
+        font-size: 15px;
+        font-weight: 200;
+        overflow-wrap: break-word;
+    }
+    .pop-up p {
+        margin-bottom: 0;
+    }
+    .pop-up h3 {
+        text-align: center;
+        margin-top: 2vh;
+        text-decoration: underline;
+    }
+    .pop-up li {
+        font-size: 15px;
+    }
+    h5 {
+        text-align: left;
+    }
+    input {
+        width: 200px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 1.2rem;
+        resize: none;
+        overflow-y: hidden;
+        margin: auto;
+    }
+    button {
+        font-size: 15px;
+    }
 }
