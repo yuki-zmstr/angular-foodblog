@@ -90,13 +90,11 @@
 
             // animate onclick
             $(document).on('click', '.nav', function() {
-                console.log("clicked")
                 var $this = $(this)
                 var to_scroll = "#" + $this.data('name')
-                console.log($this.data('name'))
-                $('html,body').animate({
+                $('html, body').animate({
                     scrollTop: $(to_scroll).offset().top
-                }, 100)
+                }, 500)
             })
 
 
