@@ -93,7 +93,7 @@
                 var $this = $(this)
                 var to_scroll = "#" + $this.data('name')
                 $('html, body').animate({
-                    scrollTop: $(to_scroll).offset().top
+                    scrollTop: $(to_scroll).offset().top - 30
                 }, 500)
             })
 
