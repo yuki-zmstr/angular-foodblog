@@ -12,7 +12,6 @@ import { HeaderComponent } from './features/components/header/header.component';
 import { BodyComponent } from './features/components/body/body.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './features/services/authentication.service';
-// import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Firebase
@@ -31,8 +30,6 @@ import { HeroComponent } from './features/components/hero/hero.component';
 import { FooterComponent } from './features/components/footer/footer.component';
 import { FoodComponent } from './features/components/food/food.component';
 import { AddFoodComponent } from './features/components/add-food/add-food.component';
-
-// import * as $ from '../../node_modules/jquery"
 
 @NgModule({
   declarations: [
