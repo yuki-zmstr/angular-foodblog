@@ -15,9 +15,7 @@ import { AuthenticationService } from './features/services/authentication.servic
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Firebase
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
 // Forms
@@ -51,8 +49,7 @@ import { AddFoodComponent } from './features/components/add-food/add-food.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'my-app-name'),
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
@@ -62,10 +59,7 @@ import { AddFoodComponent } from './features/components/add-food/add-food.compon
     MatSnackBarModule,
     BrowserAnimationsModule,
   ],
-  providers: [
-    AuthenticationService,
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
-  ],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
