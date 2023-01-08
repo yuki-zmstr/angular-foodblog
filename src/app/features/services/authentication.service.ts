@@ -22,6 +22,8 @@ export class AuthenticationService {
     }),
   };
 
+  userData: { email: string; is_admin: boolean }; // Save logged in user data
+
   constructor(
     public afs: AngularFirestore, // inject Firestore service
     public afAuth: AngularFireAuth, // inject Firebase auth service
@@ -30,6 +32,8 @@ export class AuthenticationService {
     private _snackBar: MatSnackBar,
     private http: HttpClient
   ) {
+    this.userData = JSON.parse(localStorage.getItem('user') || '');
+
     // save user data in localstorage when logged in and setting up null when logged out.
     this.afAuth.authState.subscribe(user => {
       if (user) {
