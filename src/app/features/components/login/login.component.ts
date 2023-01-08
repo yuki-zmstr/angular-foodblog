@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  logIn(name: any, password: any) {
-    console.log(name);
-    console.log(password);
+  logIn(name: string, password: string) {
     const email = name + '@yumzandsweetz.com';
     const userData: UserProfile = {
       email: email,

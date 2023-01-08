@@ -9,7 +9,8 @@
     "build-dev": "ng build --configuration=development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.{ts,html,css}\""
   },
   "private": true,
   "dependencies": {

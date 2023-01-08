@@ -35,7 +35,7 @@ export class AuthenticationService {
     // save user data in localstorage when logged in and setting up null when logged out.
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.GetUserData(user.email!).then(() => {
+        this.GetUserData(user.email).then(() => {
           localStorage.setItem('user', JSON.stringify(this.userData));
         });
       } else {
@@ -53,8 +53,8 @@ export class AuthenticationService {
   // log in with email and password. append @yumzandsweetz.com to username from UI.
   LogIn(userProfile: UserProfile) {
     return this.afAuth
-      .signInWithEmailAndPassword(userProfile.email!, userProfile.password!)
-      .then(result => {
+      .signInWithEmailAndPassword(userProfile.email, userProfile.password)
+      .then(() => {
         // this.openSnackBar("Logged in successfully!")
         this.router.navigate(['/home']);
         // window.alert("Logged in successfully!")
@@ -67,8 +67,8 @@ export class AuthenticationService {
   // Sign up with email/password
   SignUp(userProfile: UserProfile) {
     return this.afAuth
-      .createUserWithEmailAndPassword(userProfile.email!, userProfile.password!)
-      .then(result => {
+      .createUserWithEmailAndPassword(userProfile.email, userProfile.password)
+      .then(() => {
         this.SetUserData(userProfile)
           .then(() => {
             this.router.navigate(['/home']);
@@ -83,7 +83,7 @@ export class AuthenticationService {
 
   // Returns true when user is logged in.
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('user'));
     return user !== null ? true : false;
   }
 
@@ -91,7 +91,7 @@ export class AuthenticationService {
     if (this.userData == null) {
       return false;
     }
-    return this.userData.is_admin!;
+    return this.userData.is_admin;
   }
 
   SetUserData(user: UserProfile) {
@@ -132,11 +132,10 @@ export class AuthenticationService {
     });
   }
 
-  parseUser(data: any): UserProfile {
+  parseUser(data: UserProfile): UserProfile {
     return {
       email: data.email,
       password: data.password,
-      // comments: (data.comments == null) ? [] : data.comments,
       is_admin: data.is_admin == null ? false : data.is_admin,
     };
   }
@@ -162,7 +161,7 @@ export class AuthenticationService {
     return foods;
   }
 
-  async addComment(foodName: any, comment: any) {
+  async addComment(foodName: string, comment: string) {
     if (!this.isLoggedIn) {
       window.alert(
         'Please log in to leave a comment.\nコメントをするにはログインして下さい。'
@@ -174,8 +173,8 @@ export class AuthenticationService {
       const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(
         `foods/${foodName}`
       );
-      const currentComments: any = (await foodDocument.ref.get()).data()
-        ?.comments;
+      const currentComments: string[] = (await foodDocument.ref.get()).data()
+        .comments;
       currentComments.push(comment);
       foodDocument.update({ comments: currentComments });
       const currentUrl = this.router.url;
