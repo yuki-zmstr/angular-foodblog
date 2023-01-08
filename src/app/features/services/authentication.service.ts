@@ -81,9 +81,8 @@ export class AuthenticationService {
       });
   }
 
-  // Returns true when user is logged in.
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user') || '');
     return user !== null ? true : false;
   }
 
@@ -116,7 +115,7 @@ export class AuthenticationService {
     });
   }
 
-  GetUserData(email: string) {
+  GetUserData(email: string | null) {
     // const user_mail = JSON.parse(localStorage.getItem('user')!).email;
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${email}`
@@ -161,7 +160,7 @@ export class AuthenticationService {
     return foods;
   }
 
-  async addComment(foodName: string, comment: string) {
+  async addComment(foodName: string | undefined, comment: string) {
     if (!this.isLoggedIn) {
       window.alert(
         'Please log in to leave a comment.\nコメントをするにはログインして下さい。'
@@ -173,9 +172,10 @@ export class AuthenticationService {
       const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(
         `foods/${foodName}`
       );
-      const currentComments: string[] = (await foodDocument.ref.get()).data()
-        .comments;
-      currentComments.push(comment);
+      const currentComments: string[] | undefined = (
+        await foodDocument.ref.get()
+      )?.data()?.comments;
+      currentComments?.push(comment);
       foodDocument.update({ comments: currentComments });
       const currentUrl = this.router.url;
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

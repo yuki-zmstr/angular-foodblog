@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     const userData: UserProfile = {
       email: email,
       password: password,
+      is_admin: false,
     };
-    console.log(userData);
     this.authService.LogIn(userData);
   }
 }

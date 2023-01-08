@@ -14,12 +14,12 @@ export class FoodComponent implements OnInit {
 
   comment = new FormControl('', Validators.required);
 
-  addComment(foodName: string, comment: string) {
+  addComment(foodName: string | undefined, comment: string) {
     this.authService.addComment(foodName, comment);
   }
 
-  removeSpaces(name: string) {
-    return name.replace(/ /g, '');
+  removeSpaces(name: string | undefined) {
+    return name?.replace(/ /g, '');
   }
 
   constructor(public authService: AuthenticationService) {}
