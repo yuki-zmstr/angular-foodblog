@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sections } from '../sections';
+import { Sections } from '../../../sections';
 
 @Component({
   selector: 'app-body',

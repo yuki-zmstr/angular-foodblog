@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../services/authentication.service';
-import { Food } from '../models/food';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Food } from '../../models/food';
 
 
 @Component({

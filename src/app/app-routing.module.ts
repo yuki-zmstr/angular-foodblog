@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddFoodComponent } from './add-food/add-food.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { AddFoodComponent } from './features/components/add-food/add-food.component';
+import { HomeComponent } from './features/components/home/home.component';
+import { LoginComponent } from './features/components/login/login.component';
+import { SignupComponent } from './features/components/signup/signup.component';
 
 const routes: Routes = [
   {path: 'home', component:HomeComponent},

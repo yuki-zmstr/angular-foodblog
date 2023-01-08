@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Food } from '../models/food';
+import { Food } from '../../models/food';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 
 

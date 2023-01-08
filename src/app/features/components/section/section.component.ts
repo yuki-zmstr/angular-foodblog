@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Food } from '../models/food';
-import { AuthenticationService } from '../services/authentication.service';
+import { Food } from '../../models/food';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-section',
