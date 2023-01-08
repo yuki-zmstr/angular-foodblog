@@ -197,16 +197,18 @@ export class AuthenticationService {
     });
 
     const commentCollection = foodRef.collection('comments');
-    return commentCollection.ref
-      .get()
-      .then(collection => {
-        collection.forEach(comment => {
-          // comments.push(comment.data())
-        });
-      })
-      .then(() => {
-        return comments;
-      });
+    return (
+      commentCollection.ref
+        .get()
+        // .then(collection => {
+        //   collection.forEach(comment => {
+        //     // comments.push(comment.data())
+        //   });
+        // })
+        .then(() => {
+          return comments;
+        })
+    );
   }
 
   addFood(food: Food) {
