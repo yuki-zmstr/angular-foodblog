@@ -104,7 +104,7 @@ export class AuthenticationService {
   async LogOut() {
     await this.afAuth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
     window.alert('logged out successfully!');
   }
 
