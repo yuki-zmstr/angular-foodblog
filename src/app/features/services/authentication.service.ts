@@ -36,7 +36,10 @@ export class AuthenticationService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.GetUserData(user.email).then(() => {
-          localStorage.setItem('user', JSON.stringify(this.userData));
+          localStorage.setItem(
+            'user',
+            JSON.stringify({ email: user.email, is_admin: false })
+          );
         });
       } else {
         localStorage.setItem('user', 'null');
@@ -107,8 +110,7 @@ export class AuthenticationService {
       `users/${email}`
     );
     const doc = await userRef.ref.get();
-    if (doc.exists) {
-    } else {
+    if (!doc.exists) {
       window.alert('Error while loading user data!');
     }
   }
