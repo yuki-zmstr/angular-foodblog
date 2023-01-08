@@ -151,7 +151,7 @@ export class AuthenticationService {
   await foodCollection.ref.get()
   .then((querySnapShot) => {
     querySnapShot.forEach(async(food_detail) => {
-      let food: Food = food_detail.data();
+      const food: Food = food_detail.data();
       if (food.category == category) {
         foods.push(food)
       }
@@ -174,7 +174,7 @@ export class AuthenticationService {
         const currentComments: any = (await foodDocument.ref.get()).data()?.comments
         currentComments.push(comment)
         foodDocument.update({comments: currentComments})
-        let currentUrl = this.router.url;
+        const currentUrl = this.router.url;
         this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
             this.router.navigate([currentUrl]);
         });
@@ -187,7 +187,7 @@ export class AuthenticationService {
     const foodRef: AngularFirestoreDocument<any> = this.afs.doc(
       `foods/${foodName}`
     )
-    var comments: Comment[] = [];
+    const comments: Comment[] = [];
 
     foodRef.ref.get().then(doc => {
       if (!doc.exists) {
@@ -204,7 +204,7 @@ export class AuthenticationService {
   }
 
   addFood(food: Food) {
-    var foodRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const foodRef: AngularFirestoreDocument<any> = this.afs.doc(
       `foods/${food.name}`
     );
     return foodRef.ref.get().then(doc=> {
