@@ -6,5 +6,5 @@ export const Sections = [
   'Ethnic',
   'Fusion',
   'Korean',
-  'Sweetz'
-]
+  'Sweetz',
+];
