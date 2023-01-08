@@ -15,8 +15,6 @@ import { Food } from '../models/food';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  userData?: UserProfile; // saved logged in user data
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -54,16 +52,17 @@ export class AuthenticationService {
   }
 
   // log in with email and password. append @yumzandsweetz.com to username from UI.
-  LogIn(userProfile: UserProfile) {
-    return this.afAuth
-      .signInWithEmailAndPassword(userProfile.email, userProfile.password)
-      .then(() => {
-        this.router.navigate(['/home']);
-        window.alert('Logged in successfully!');
-      })
-      .catch(error => {
-        window.alert(error.message);
-      });
+  async LogIn(userProfile: UserProfile) {
+    try {
+      await this.afAuth.signInWithEmailAndPassword(
+        userProfile.email,
+        userProfile.password
+      );
+      this.router.navigate(['/home']);
+      window.alert('Logged in successfully!');
+    } catch (error) {
+      window.alert('Email or password is incorrect. Please try again.');
+    }
   }
 
   // Sign up with email/password
@@ -115,12 +114,12 @@ export class AuthenticationService {
     }
   }
 
-  parseUser(data: UserProfile): { email: string; is_admin: boolean } {
-    return {
-      email: data.email,
-      is_admin: data.is_admin == null ? false : data.is_admin,
-    };
-  }
+  // parseUser(data: UserProfile): { email: string; is_admin: boolean } {
+  //   return {
+  //     email: data.email,
+  //     is_admin: data.is_admin == null ? false : data.is_admin,
+  //   };
+  // }
 
   async GetFoods(category: string) {
     // take in category as parameter -> search for foods with this category
