@@ -15,14 +15,14 @@ import { Food } from '../models/food';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  userData?: UserProfile; // saved logged in user data
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'my-auth-token',
     }),
   };
+
+  userData: { email: string; is_admin: boolean }; // Save logged in user data
 
   constructor(
     public afs: AngularFirestore, // inject Firestore service
@@ -32,11 +32,16 @@ export class AuthenticationService {
     private _snackBar: MatSnackBar,
     private http: HttpClient
   ) {
+    this.userData = JSON.parse(localStorage.getItem('user') || '');
+
     // save user data in localstorage when logged in and setting up null when logged out.
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.GetUserData(user.email!).then(() => {
-          localStorage.setItem('user', JSON.stringify(this.userData));
+        this.GetUserData(user.email).then(() => {
+          localStorage.setItem(
+            'user',
+            JSON.stringify({ email: user.email, is_admin: false })
+          );
         });
       } else {
         localStorage.setItem('user', 'null');
@@ -51,95 +56,74 @@ export class AuthenticationService {
   }
 
   // log in with email and password. append @yumzandsweetz.com to username from UI.
-  LogIn(userProfile: UserProfile) {
-    return this.afAuth
-      .signInWithEmailAndPassword(userProfile.email!, userProfile.password!)
-      .then(result => {
-        // this.openSnackBar("Logged in successfully!")
-        this.router.navigate(['/home']);
-        // window.alert("Logged in successfully!")
-      })
-      .catch(error => {
-        window.alert(error.message);
-      });
+  async LogIn(userProfile: UserProfile) {
+    try {
+      await this.afAuth.signInWithEmailAndPassword(
+        userProfile.email,
+        userProfile.password
+      );
+      this.router.navigate(['/home']);
+      window.alert('Logged in successfully!');
+    } catch (error) {
+      window.alert('Email or password is incorrect. Please try again.');
+    }
   }
 
   // Sign up with email/password
-  SignUp(userProfile: UserProfile) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(userProfile.email!, userProfile.password!)
-      .then(result => {
-        this.SetUserData(userProfile)
-          .then(() => {
-            this.router.navigate(['/home']);
-            // this.openSnackBar("Signed up successfully!")
-            // window.alert("Signed up successfully!")
-          })
-          .catch(error => {
-            window.alert(error.message);
-          });
-      });
+  async SignUp(userProfile: UserProfile) {
+    await this.afAuth.createUserWithEmailAndPassword(
+      userProfile.email,
+      userProfile.password
+    );
+    this.router.navigate(['/home']).then(() => {
+      window.alert('Signed up successfully!');
+    });
+    this.SetUserData({ email: userProfile.email, is_admin: false });
   }
 
-  // Returns true when user is logged in.
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('user') || '');
     return user !== null ? true : false;
   }
 
   get isAdmin(): boolean {
-    if (this.userData == null) {
-      return false;
-    }
-    return this.userData.is_admin!;
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    return user !== null ? user.is_admin : false;
   }
 
-  SetUserData(user: UserProfile) {
+  async SetUserData(user: { email: string; is_admin: boolean }) {
+    localStorage.setItem('user', JSON.stringify(user));
+
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.email}`
     );
-    return userRef.set(user, { merge: true }).then(() => {
-      this.userData = user;
-      localStorage.setItem('user', JSON.stringify(this.userData));
-    });
+    await userRef.set(user, { merge: true });
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  LogOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.userData = undefined;
-      window.location.reload();
-      this.router.navigate(['/home']);
-      //refresh when sign out
-
-      window.alert('logged out successfully!');
-    });
+  async LogOut() {
+    await this.afAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
+    window.alert('logged out successfully!');
   }
 
-  GetUserData(email: string) {
-    // const user_mail = JSON.parse(localStorage.getItem('user')!).email;
+  async GetUserData(email: string | null) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${email}`
     );
-    return userRef.ref.get().then(doc => {
-      if (doc.exists) {
-        const data = doc.data();
-        const userData = this.parseUser(data);
-        this.userData = userData;
-      } else {
-        window.alert('Error while loading user data!');
-      }
-    });
+    const doc = await userRef.ref.get();
+    if (!doc.exists) {
+      window.alert('Error while loading user data!');
+    }
   }
 
-  parseUser(data: any): UserProfile {
-    return {
-      email: data.email,
-      password: data.password,
-      // comments: (data.comments == null) ? [] : data.comments,
-      is_admin: data.is_admin == null ? false : data.is_admin,
-    };
-  }
+  // parseUser(data: UserProfile): { email: string; is_admin: boolean } {
+  //   return {
+  //     email: data.email,
+  //     is_admin: data.is_admin == null ? false : data.is_admin,
+  //   };
+  // }
 
   async GetFoods(category: string) {
     // take in category as parameter -> search for foods with this category
@@ -162,7 +146,7 @@ export class AuthenticationService {
     return foods;
   }
 
-  async addComment(foodName: any, comment: any) {
+  async addComment(foodName: string | undefined, comment: string) {
     if (!this.isLoggedIn) {
       window.alert(
         'Please log in to leave a comment.\nコメントをするにはログインして下さい。'
@@ -174,9 +158,10 @@ export class AuthenticationService {
       const foodDocument: AngularFirestoreDocument<Food> = this.afs.doc(
         `foods/${foodName}`
       );
-      const currentComments: any = (await foodDocument.ref.get()).data()
-        ?.comments;
-      currentComments.push(comment);
+      const currentComments: string[] | undefined = (
+        await foodDocument.ref.get()
+      )?.data()?.comments;
+      currentComments?.push(comment);
       foodDocument.update({ comments: currentComments });
       const currentUrl = this.router.url;
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -198,36 +183,36 @@ export class AuthenticationService {
     });
 
     const commentCollection = foodRef.collection('comments');
-    return commentCollection.ref
-      .get()
-      .then(collection => {
-        collection.forEach(comment => {
-          // comments.push(comment.data())
-        });
-      })
-      .then(() => {
-        return comments;
-      });
+    return (
+      commentCollection.ref
+        .get()
+        // .then(collection => {
+        //   collection.forEach(comment => {
+        //     // comments.push(comment.data())
+        //   });
+        // })
+        .then(() => {
+          return comments;
+        })
+    );
   }
 
-  addFood(food: Food) {
+  async addFood(food: Food) {
     const foodRef: AngularFirestoreDocument<any> = this.afs.doc(
       `foods/${food.name}`
     );
-    return foodRef.ref.get().then(doc => {
-      if (doc.exists) {
-        throw new Error('The food data exists already!');
-      } else {
-        return foodRef
-          .set(food, {
-            merge: true,
-          })
-          .then(() => {
-            window.location.reload();
-            // this.router.navigate(['/admin']);
-            return true;
-          });
-      }
-    });
+    const doc = await foodRef.ref.get();
+    if (doc.exists) {
+      throw new Error('The food data exists already!');
+    } else {
+      return foodRef
+        .set(food, {
+          merge: true,
+        })
+        .then(() => {
+          window.location.reload();
+          return true;
+        });
+    }
   }
 }

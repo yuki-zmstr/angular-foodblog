@@ -7,5 +7,4 @@ export interface Food {
   comments?: string[];
   desc_en?: string;
   desc_jp?: string;
-  // or just give it a list of string?
 }

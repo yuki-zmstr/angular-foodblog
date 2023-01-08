@@ -63,11 +63,12 @@ export class SignupComponent implements OnInit {
   //   return String(this.signUpForm.get('password'))
   // }
 
-  signUp(name: any, password: any) {
+  signUp(name: string, password: string) {
     const email = name + '@yumzandsweetz.com';
     const userData: UserProfile = {
       email: email,
       password: password,
+      is_admin: false,
     };
     console.log(userData);
     this.authService.SignUp(userData);

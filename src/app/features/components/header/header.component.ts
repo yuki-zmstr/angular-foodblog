@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  formatName(email: any) {
+  formatName(email: string) {
     return email.replace('@yumzandsweetz.com', '');
   }
 

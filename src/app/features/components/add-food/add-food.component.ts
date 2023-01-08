@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Food } from '../../models/food';
 
@@ -22,12 +22,12 @@ export class AddFoodComponent implements OnInit {
   ngOnInit(): void {}
 
   addFood(
-    name: any,
-    category: any,
-    subcategory: any,
-    img_url: any,
-    desc_en: any,
-    desc_jp: any
+    name: string,
+    category: string,
+    subcategory: string,
+    img_url: string,
+    desc_en: string,
+    desc_jp: string
   ) {
     const foodProfile: Food = {
       name: name,
@@ -38,7 +38,6 @@ export class AddFoodComponent implements OnInit {
       desc_jp: desc_jp,
       comments: [],
     };
-    // console.log("adding food", foodProfile)
     this.authService.addFood(foodProfile);
   }
 }

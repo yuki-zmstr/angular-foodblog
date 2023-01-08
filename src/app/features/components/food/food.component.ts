@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Food } from '../../models/food';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -14,12 +14,12 @@ export class FoodComponent implements OnInit {
 
   comment = new FormControl('', Validators.required);
 
-  addComment(foodName: any, comment: any) {
+  addComment(foodName: string | undefined, comment: string) {
     this.authService.addComment(foodName, comment);
   }
 
-  removeSpaces(name: any) {
-    return name.replace(/ /g, '');
+  removeSpaces(name: string | undefined) {
+    return name?.replace(/ /g, '');
   }
 
   constructor(public authService: AuthenticationService) {}

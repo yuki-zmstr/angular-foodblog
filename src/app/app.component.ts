@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import $ from 'jquery';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'angular-foodblog';
-
-  ngOnInit() {}
+export class AppComponent {
+  title = 'Yumz & Sweetz';
 }
