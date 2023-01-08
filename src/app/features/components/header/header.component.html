@@ -1,53 +1,56 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-4">
-            <h1>Y</h1>
-            <h6>umz & Sweetz
-            </h6>
-        </div>
-        <div class="col">
-            <!-- <div class="row login"> -->
-            <!-- <span style="width: 100%; text-align: right">Welcome back: </span> -->
-            <!-- <a class="nav-item nav-link" id="logout" href="/logout">Log Out</a> -->
-            <!-- <span style="width: 100%; text-align: right">Always open to advice.</span> -->
-            <!-- <a class="nav-item nav-link" id="login" href="/login">Log In</a> -->
-            <!-- </div> -->
-            <div class="row sns">
-                <ul>
-                    <li>
-                        <a href="https://www.facebook.com/profile.php?id=100009808110440" target="_blank">
-                            <fa-icon [icon]="FBicon"></fa-icon>
-                        </a>
-                        <a href="https://www.linkedin.com/in/yukihide-takahashi-68366a1b7/" target="_blank">
-                            <fa-icon [icon]="LIicon"></fa-icon>
-                        </a>
-                        <a href="https://www.instagram.com/yuki.zmstr/?hl=en" target="_blank">
-                            <fa-icon [icon]="IGicon"></fa-icon>
-                        </a>
-                        <!-- <a>
+  <div class="row">
+    <div class="col-lg-4">
+      <h1>Y</h1>
+      <h6>umz & Sweetz</h6>
+    </div>
+    <div class="col">
+      <!-- <div class="row login"> -->
+      <!-- <span style="width: 100%; text-align: right">Welcome back: </span> -->
+      <!-- <a class="nav-item nav-link" id="logout" href="/logout">Log Out</a> -->
+      <!-- <span style="width: 100%; text-align: right">Always open to advice.</span> -->
+      <!-- <a class="nav-item nav-link" id="login" href="/login">Log In</a> -->
+      <!-- </div> -->
+      <div class="row sns">
+        <ul>
+          <li>
+            <a
+              href="https://www.facebook.com/profile.php?id=100009808110440"
+              target="_blank">
+              <fa-icon [icon]="FBicon"></fa-icon>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yukihide-takahashi-68366a1b7/"
+              target="_blank">
+              <fa-icon [icon]="LIicon"></fa-icon>
+            </a>
+            <a
+              href="https://www.instagram.com/yuki.zmstr/?hl=en"
+              target="_blank">
+              <fa-icon [icon]="IGicon"></fa-icon>
+            </a>
+            <!-- <a>
                             <fa-icon [icon]="BWicon" id="bw"></fa-icon>
                         </a> -->
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <ng-container *ngIf="authService.userData as user; else loginButton">
-            <div class="col">
-                <div class="row topright">
-                    <p>Welcome back, {{formatName(user.email)}}</p>
-                    <button (click)="logout()">Log Out</button>
-                </div>
-
-            </div>
-        </ng-container>
-        <ng-template #loginButton>
-            <div class="col">
-                <div class="row topright">
-                    <p>Always open to advice.</p>
-                    <button onclick="window.location.href = '/login'">Log In</button>
-                </div>
-            </div>
-        </ng-template>
-
+          </li>
+        </ul>
+      </div>
     </div>
+    <ng-container *ngIf="authService.userData as user; else loginButton">
+      <div class="col">
+        <div class="row topright">
+          <p>Welcome back, {{ formatName(user.email) }}</p>
+          <button (click)="logout()">Log Out</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loginButton>
+      <div class="col">
+        <div class="row topright">
+          <p>Always open to advice.</p>
+          <button onclick="window.location.href = '/login'">Log In</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>

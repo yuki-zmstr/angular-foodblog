@@ -5,17 +5,14 @@ import { Sections } from '../sections';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+  sections = Sections;
 
-  sections = Sections
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // top nav fixed position
-    
   }
-
 }

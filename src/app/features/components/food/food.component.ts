@@ -4,32 +4,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../services/authentication.service';
 
-
-
 @Component({
   selector: 'app-food',
   templateUrl: './food.component.html',
-  styleUrls: ['./food.component.scss']
+  styleUrls: ['./food.component.scss'],
 })
 export class FoodComponent implements OnInit {
+  @Input() food!: Food;
 
-  @Input() food!:Food
-
-  comment = new FormControl('', Validators.required)
-
+  comment = new FormControl('', Validators.required);
 
   addComment(foodName: any, comment: any) {
-    this.authService.addComment(foodName, comment)
+    this.authService.addComment(foodName, comment);
   }
 
   removeSpaces(name: any) {
-    return name.replace(/ /g, "")
+    return name.replace(/ /g, '');
   }
 
+  constructor(public authService: AuthenticationService) {}
 
-  constructor(public authService: AuthenticationService) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

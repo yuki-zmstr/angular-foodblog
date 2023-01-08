@@ -1,127 +1,136 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Yumz & Sweetz</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
 
     <!-- icons -->
     <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css"> -->
 
     <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700;900&family=Kumbh+Sans:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@700;900&family=Kumbh+Sans:wght@700&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap"
+      rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous" />
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        setTimeout(() => {
+      setTimeout(() => {
+        // slideshow
+        let slideIndex = 1;
+        $('.slideshow-container').each(function () {
+          let cat = $(this)[0].id;
+          showSlides(slideIndex, cat);
+        });
 
-            // slideshow
-            let slideIndex = 1;
-            $(".slideshow-container").each(function() {
-                let cat = $(this)[0].id
-                showSlides(slideIndex, cat)
+        $('.prev').click(function () {
+          let cat = $(this).parent()[0].id;
+          showSlides((slideIndex -= 1), cat);
+        });
+        $('.next').click(function () {
+          let cat = $(this).parent()[0].id;
+          showSlides((slideIndex += 1), cat);
+        });
+
+        $('.dot').click(function () {
+          let num = $(this).data('num');
+          let cat = $(this).parents()[1].id;
+          showSlides((slideIndex = num), cat);
+        });
+
+        function showSlides(n, cat) {
+          let i;
+          let slides = document
+            .getElementById(cat)
+            .getElementsByClassName('slide');
+          let dots = document.getElementById(cat).getElementsByClassName('dot');
+          if (n > slides.length) {
+            slideIndex = 1;
+          }
+          if (n < 1) {
+            slideIndex = slides.length;
+          }
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(' active', '');
+          }
+          slides[slideIndex - 1].style.display = 'block';
+          dots[slideIndex - 1].className += ' active';
+        }
+
+        // nav bar positioning
+        var topnavPos = $('#topnav').offset().top;
+        $(window).scroll(function () {
+          var scroll = $(window).scrollTop() + 10;
+          // console.log(scroll);
+          if (scroll > topnavPos) {
+            $('#topnav').css({
+              position: 'fixed',
+              top: '10px',
+            }); //
+          } else {
+            $('#topnav').css({
+              position: 'absolute',
+              top: '140px',
             });
+          }
+        });
 
-            $(".prev").click(function() {
-                let cat = $(this).parent()[0].id
-                showSlides(slideIndex -= 1, cat)
-            })
-            $(".next").click(function() {
-                let cat = $(this).parent()[0].id
-                showSlides(slideIndex += 1, cat)
-            })
+        // animate onclick
+        $(document).on('click', '.nav', function () {
+          var $this = $(this);
+          var to_scroll = '#' + $this.data('name');
+          $('html, body').animate(
+            {
+              scrollTop: $(to_scroll).offset().top - 30,
+            },
+            500
+          );
+        });
 
-            $('.dot').click(function() {
-                let num = $(this).data('num')
-                let cat = $(this).parents()[1].id
-                showSlides(slideIndex = num, cat)
-            })
+        // comments pop up
 
-            function showSlides(n, cat) {
-                let i;
-                let slides = document.getElementById(cat).getElementsByClassName("slide");
-                let dots = document.getElementById(cat).getElementsByClassName("dot");
-                if (n > slides.length) {
-                    slideIndex = 1
-                }
-                if (n < 1) {
-                    slideIndex = slides.length
-                }
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
-            }
-
-            // nav bar positioning
-            var topnavPos = $("#topnav").offset().top;
-            $(window).scroll(function() {
-                var scroll = $(window).scrollTop() + 10;
-                // console.log(scroll);
-                if (scroll > topnavPos) {
-                    $("#topnav").css({
-                        "position": "fixed",
-                        "top": "10px"
-                    }); //
-                } else {
-                    $("#topnav").css({
-                        "position": "absolute",
-                        "top": "140px"
-                    })
-                }
-            })
-
-            // animate onclick
-            $(document).on('click', '.nav', function() {
-                var $this = $(this)
-                var to_scroll = "#" + $this.data('name')
-                $('html, body').animate({
-                    scrollTop: $(to_scroll).offset().top - 30
-                }, 500)
-            })
-
-
-            // comments pop up
-
-            $(document).on('mouseenter', '.popup', function() {
-                var $this = $(this)
-                var to_pop = "#" + $this.data('name') + "-popup"
-                var $to_pop = $(to_pop);
-                $to_pop.fadeIn(300);
-            })
-            $(document).on('mouseleave', '.popup', function() {
-                var $this = $(this)
-                var to_pop = "#" + $this.data('name') + "-popup"
-                var $to_pop = $(to_pop);
-                $to_pop.fadeOut(300);
-            })
-        }, 400);
+        $(document).on('mouseenter', '.popup', function () {
+          var $this = $(this);
+          var to_pop = '#' + $this.data('name') + '-popup';
+          var $to_pop = $(to_pop);
+          $to_pop.fadeIn(300);
+        });
+        $(document).on('mouseleave', '.popup', function () {
+          var $this = $(this);
+          var to_pop = '#' + $this.data('name') + '-popup';
+          var $to_pop = $(to_pop);
+          $to_pop.fadeOut(300);
+        });
+      }, 400);
     </script>
+  </head>
 
-
-
-</head>
-
-<body>
+  <body>
     <app-root></app-root>
     <!-- <script type="text/javascript" src="./node_modules/bootstrap/dist/js/bootstrap.js"></script> -->
-</body>
-
+  </body>
 </html>

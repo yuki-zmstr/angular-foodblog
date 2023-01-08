@@ -1,8 +1,10 @@
 <div class="container-fluid" id="topnav">
-    <div class="row">
-        <!-- put for in the element that you want to repeat -->
-        <div class="col" *ngFor="let section of sections ">
-            <a class="nav" href="home#{{section}}" [attr.data-name]="section">{{section}}</a>
-        </div>
+  <div class="row">
+    <!-- put for in the element that you want to repeat -->
+    <div class="col" *ngFor="let section of sections">
+      <a class="nav" href="home#{{ section }}" [attr.data-name]="section">{{
+        section
+      }}</a>
     </div>
+  </div>
 </div>

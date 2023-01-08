@@ -6,16 +6,15 @@ import { LoginComponent } from './features/components/login/login.component';
 import { SignupComponent } from './features/components/signup/signup.component';
 
 const routes: Routes = [
-  {path: 'home', component:HomeComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'signup', component:SignupComponent},
-  {path: 'admin', component:AddFoodComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'admin', component: AddFoodComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
